@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablero de Producción DTF</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <h1>Tablero de Producción</h1>
+                <h2 class="dtf">DTF</h2>
+                <p class="mode">Modo: PÚBLICO / CLIENTE</p>
+            </div>
+            <div class="header-right">
+                <button class="admin-access">Acceso Admin</button>
+            </div>
+        </header>
+
+        <main>
+            <div class="filter-section">
+                <label for="filter-by">Filtrar por:</label>
+                <select id="filter-by">
+                    <option value="all">Todos (0)</option>
+                    <option value="pending">Pendientes</option>
+                    <option value="delivered">Entregados</option>
+                </select>
+            </div>
+
+            <div id="content-area">
+                <div class="no-orders-message" id="no-orders-message">
+                    <p>Aún no hay pedidos DTF cargados.</p>
+                </div>
+
+                <div class="order-table-container hidden" id="order-table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                </tr>
+                        </thead>
+                        <tbody id="orders-tbody">
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="admin-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>Acceso de Administrador</h3>
+            <form id="admin-login-form">
+                <input type="password" id="admin-password" placeholder="Contraseña" required>
+                <button type="submit">Ingresar</button>
+                <p id="login-error" class="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="add-order-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button add-order-close">&times;</span>
+            <h3>Añadir Nuevo Pedido DTF</h3>
+            <form id="add-order-form">
+                <input type="text" id="add-client" placeholder="Nombre del Cliente" required>
+                <textarea id="add-specs" placeholder="Especificaciones (medidas, colores, ubicación)" required></textarea>
+                
+                <div class="admin-fields-group">
+                    <h4>Detalles de Producción:</h4>
+                    
+                    <label for="add-photo" class="file-upload-label">
+                        Subir Archivo de Diseño (JPG/PNG)
+                    </label>
+                    <input type="file" id="add-photo" accept="image/png, image/jpeg" required>
+                    
+                    <div class="input-group">
+                        <input type="number" id="add-anticipo" placeholder="Anticipo ($)" min="0" step="0.01">
+                    </div>
+                    
+                    <label for="add-delivery-date">Fecha de Entrega (Real):</label>
+                    <input type="date" id="add-delivery-date">
+                </div>
+                <label for="add-date">Fecha de Creación del Pedido:</label>
+                <input type="date" id="add-date" required>
+                
+                <div class="form-options">
+                    <label>
+                        <input type="checkbox" id="add-delivered"> Entregado
+                    </label>
+                    <label>
+                        <input type="checkbox" id="add-download"> Archivo para Descargar (Cliente)
+                    </label>
+                </div>
+
+                <button type="submit">Guardar Pedido</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="floating-buttons">
+        <button class="fab main-fab">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </button>
+        <div class="sub-fabs">
+            <button class="fab sub-fab" id="config-fab">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0id2hpdGUiPjxwYXRoIGQ9Ik0xMiAyQzYuNDc3IDIgMiA2LjQ3NyAyIDEyczQuNDc3IDEwIDEwIDEwIDEwLTQuNDc3IDEtMTBTMTcuNTIzIDIgMTIgMnptLTMyNS0yLjI1aC43NXYtMy41aDNWMTRoLTN2LTNoM3Y4LjVoLTNWMjEuNzV6Ii8+PHBhdGggZD0iTTEyIDcuMzY3YzIuNTczIDAgNC42MzMgMi4wNiA0LjYzMyA0LjYzMyAwIDIuNTczLTIuMDYgNC42MzMtNC42MzMgNC42MzNTNy4zNjcgMTQuNTczIDcuMzY3IDEyIDkuNDI3IDcuMzY3IDEyIDcuMzY3eiIvPjwvc3ZnPg==" alt="Settings icon" />
+            </button>
+
+            <button class="fab sub-fab hidden" id="add-fab">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My53b3JjLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9IndoaXRlIj48cGF0aCBkPSJNMTkgMTFINDN2Mi0yLTEyVjE5aC04di04eiIvPjwvcGF0aD48L3N2ZyI+" alt="Add icon" />
+            </button>
+        </div>
+    </div>
+
+    <script src="scrip.js" type="module"></script>
+</body>
+</html>
